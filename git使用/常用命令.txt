@@ -1,0 +1,74 @@
+git
+$ git config --global user.name "Your Name"  全局账号
+$ git config --global user.email "email@example.com" 全局密码
+mkdir 创建文件夹
+cd 跳转文件夹
+pwd 查看当前目录
+
+git init 初始化一个git仓库（空仓库）
+git add **/*.java
+git commit -m "description"
+
+git status 查看当前仓库的状态
+git diff 查看各版本文件修改的内容
+git log 最近到最远的提交日志
+git log --pretty=oneline 以漂亮的格式显示日志
+
+git reset --hard HEAD^ 回退到上一个版本（历史版本）
+git reset --hard HEAD^^ 回退到上两个版本（历史版本）
+git reset --hard HEAD~100 回退到上一百个版本（历史版本）
+git reset --hard versionid 回退到某一个版本（或者未来版本）
+git reflog 查看所有分支的所有操作记录（包括commit和reset的操作）
+
+git checkout -- file 放弃工作区的修改（版本库里的版本替换工作区的版本）
+git reset HEAD file 放弃暂存区的修改（使用后会回到工作区已经修改的状态）
+
+rm file 删除文件（标准控制台命令）
+git rm file 删除文件（git命令）
+
+ssh-keygen -t rsa -C "youremail@example.com" 创建SSH Key
+git remote add origin git@github.com:ZXflake/learngit.git 连接到远程仓库，远程仓库的名称叫叫做origin（使用不同的名称 可以连接到不同的远程仓库）
+git push -u origin master首次推送到远程（第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来）
+git push origin master 将master分支提交到远程（如果推送失败，先用git pull抓取远程的新提交；）
+git clone git@github.com:ZXflake/gitskills.git 克隆远程仓库到本地
+git remote 查看远程仓库信息
+git remote -v 查看远程仓库详细信息
+git remote rm origin 删除名称为origin的远程库
+
+git checkout -b dev 创建dev分支并切换到dev分支（-b参数表示创建并切换）
+git branch dev 创建dev分支
+git checkout dev 切换到dev分支
+git branch 查看所有分支（带*表示当前分支）
+git merge <name> 合并指定分支到当前分支
+git merge --no-ff -m "merge with no-ff" <name> 合并指定分支到当前分支并禁用快速合并模式（快速合并模式删除分支之后会丢掉分支信息，普通模式会生成新的提交）
+git branch -d <name> 删除分支（尚未合并的分支无法删除）
+git branch -D <name> 强行删除分支
+git log --graph --pretty=oneline --abbrev-commit 查看分支合并情况（带参数的log查看）
+
+git stash 存储工作现场（未添加的文件 未提交的文件 和临时需要提交的文件可能存在冲突的情况）
+git stash list 查看储存的工作现场列表
+git stash apply 恢复最近一次工作现场
+git stash drop 删除最近一次工作现场
+git stash pop 恢复同时删除最近一次工作现场
+git stash apply stash@{0} 恢复指定的工作现场
+
+git pull 从远程拉取
+git checkout -b <name> origin/<name> 在本地创建和远程分支对应的分支（名称最好相同）
+git branch --set-upstream <name> origin/<name> 建立本地分支和远程分支的关联
+git branch --set-upstream-to=origin/<name> <name> 建立本地分支和远程分支的关联(新版本命令)
+
+git tag v1.0 创建一个名称为v1.0的标签
+git tag v1.0 <commit id>给某个提交创建一个名称为v1.0的标签
+git tag -a v0.1 -m "version 0.1 released" <commit id> -a标签名 -m标签描述
+git tag 查看所有标签
+git show <tagname> 查看标签信息
+git tag -d <tagname> 删除一个本地标签
+git push origin <tagname> 推送一个本地标签
+git push origin --tags 推送本地所有标签
+git push origin :refs/tags/<tagname> 删除一个远程标签
+
+git add -f App.class 强制添加该文件（即使被忽略）
+git check-ignore -v <filename> 检查忽略规则
+使用.gitignore文件忽略特殊文件
+
+git config --global alias.st status 配置status的别名为st
